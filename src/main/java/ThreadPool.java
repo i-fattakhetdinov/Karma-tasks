@@ -1,22 +1,22 @@
 import java.util.Vector;
 
-public class ThreadPool{
+public class ThreadPool {
     private Vector<Thread> workers;
     private ThreadSafeQueue tasks;
 
-    ThreadPool(int num_workers){
+    ThreadPool(int num_workers) {
         tasks = new ThreadSafeQueue();
         workers = new Vector<>();
-        for(int i = 0; i < num_workers; i++) {
+        for (int i = 0; i < num_workers; i++) {
             Thread thread = new Thread() {
                 @Override
                 public void run() {
                     try {
-                        while (true){
+                        while (true) {
                             Runnable task = tasks.pop();
                             task.run();
                         }
-                    }catch (Exception e){
+                    } catch (Exception e) {
                     }
                 }
             };
@@ -25,7 +25,7 @@ public class ThreadPool{
         }
     }
 
-    void execute(Runnable function){
+    void execute(Runnable function) {
         tasks.push(function);
     }
 

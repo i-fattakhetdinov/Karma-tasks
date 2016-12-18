@@ -1,25 +1,25 @@
 import java.util.Vector;
 
-public class ThreadSafeQueue{
+public class ThreadSafeQueue {
     private static final Object monitor = new Object();
     private boolean isEnable;
     Vector<Runnable> myQueue = new Vector<>();
 
-    ThreadSafeQueue(){
+    ThreadSafeQueue() {
         isEnable = true;
     }
 
-    public void push(Runnable v){
-        synchronized (monitor){
+    public void push(Runnable v) {
+        synchronized (monitor) {
             isEnable();
             myQueue.add(v);
             monitor.notify();
         }
     }
 
-    public Runnable pop(){
-        synchronized (monitor){
-            while (myQueue.isEmpty()){
+    public Runnable pop() {
+        synchronized (monitor) {
+            while (myQueue.isEmpty()) {
                 isEnable();
                 try {
                     monitor.wait();
@@ -39,8 +39,9 @@ public class ThreadSafeQueue{
             monitor.notifyAll();
         }
     }
-    private void isEnable(){
-        if(!isEnable){
+
+    private void isEnable() {
+        if (!isEnable) {
             throw new RuntimeException();
         }
     }

@@ -10,7 +10,7 @@ public class main {
         ThreadPool myPool = new ThreadPool(4);
         Runnable run = () -> System.out.println("In Runnable");
         Runnable hello = () -> System.out.println("hello");
-        for(int i = 0; i < 10000; i++){
+        for (int i = 0; i < 10000; i++) {
             myPool.execute(run);
             myPool.execute(hello);
         }
