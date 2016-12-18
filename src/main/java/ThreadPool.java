@@ -35,7 +35,7 @@ public class ThreadPool {
             try {
                 worker.join();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                throw new RuntimeException();
             }
         }
     }

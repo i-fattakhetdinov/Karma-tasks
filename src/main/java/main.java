@@ -1,11 +1,5 @@
 
-
-
 public class main {
-    void printSum() {
-        System.out.println("123");
-    }
-
     public static void main(String[] args) {
         ThreadPool myPool = new ThreadPool(4);
         Runnable run = () -> System.out.println("In Runnable");
