@@ -1,14 +1,14 @@
 package ThreadPool;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class ThreadPool {
-    private Vector<Thread> workers;
+    private ArrayList<Thread> workers;
     private ThreadSafeQueue<Runnable> tasks;
 
     ThreadPool(int num_workers) {
         tasks = new ThreadSafeQueue<Runnable>();
-        workers = new Vector<>();
+        workers = new ArrayList<>();
         for (int i = 0; i < num_workers; i++) {
             Thread thread = new Thread() {
                 @Override

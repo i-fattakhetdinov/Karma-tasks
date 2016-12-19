@@ -1,6 +1,6 @@
 package ThreadPool;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
         ThreadPool myPool = new ThreadPool(4);
         Runnable run = () -> System.out.println("In Runnable");

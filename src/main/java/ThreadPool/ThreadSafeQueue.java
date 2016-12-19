@@ -1,11 +1,12 @@
 package ThreadPool;
 
-import java.util.Vector;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class ThreadSafeQueue<Type> {
     private static final Object monitor = new Object();
     private boolean isEnable;
-    private Vector<Type> myQueue = new Vector<>();
+    private Queue<Type> myQueue = new LinkedList<>();
 
     ThreadSafeQueue() {
         isEnable = true;
@@ -29,8 +30,7 @@ public class ThreadSafeQueue<Type> {
                     throw new RuntimeException();
                 }
             }
-            Type res = myQueue.lastElement();
-            myQueue.removeElementAt(myQueue.size() - 1);
+            Type res = myQueue.poll();
             return res;
         }
     }
