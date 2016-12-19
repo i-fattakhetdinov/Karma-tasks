@@ -1,11 +1,13 @@
+package ThreadPool;
+
 import java.util.Vector;
 
 public class ThreadPool {
     private Vector<Thread> workers;
-    private ThreadSafeQueue tasks;
+    private ThreadSafeQueue<Runnable> tasks;
 
     ThreadPool(int num_workers) {
-        tasks = new ThreadSafeQueue();
+        tasks = new ThreadSafeQueue<Runnable>();
         workers = new Vector<>();
         for (int i = 0; i < num_workers; i++) {
             Thread thread = new Thread() {

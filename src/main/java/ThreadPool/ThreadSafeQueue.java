@@ -1,15 +1,17 @@
+package ThreadPool;
+
 import java.util.Vector;
 
-public class ThreadSafeQueue {
+public class ThreadSafeQueue<Type> {
     private static final Object monitor = new Object();
     private boolean isEnable;
-    Vector<Runnable> myQueue = new Vector<>();
+    private Vector<Type> myQueue = new Vector<>();
 
     ThreadSafeQueue() {
         isEnable = true;
     }
 
-    public void push(Runnable v) {
+    public void push(Type v) {
         synchronized (monitor) {
             isEnable();
             myQueue.add(v);
@@ -17,7 +19,7 @@ public class ThreadSafeQueue {
         }
     }
 
-    public Runnable pop() {
+    public Type pop() {
         synchronized (monitor) {
             while (myQueue.isEmpty()) {
                 isEnable();
@@ -27,7 +29,7 @@ public class ThreadSafeQueue {
                     throw new RuntimeException();
                 }
             }
-            Runnable res = myQueue.lastElement();
+            Type res = myQueue.lastElement();
             myQueue.removeElementAt(myQueue.size() - 1);
             return res;
         }
