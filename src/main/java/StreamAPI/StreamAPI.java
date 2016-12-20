@@ -29,11 +29,14 @@ public class StreamAPI {
                     //some problems with "антон" the first word in file
                     .map(w -> w
                             .split("[[ ]*|[)]*|[(]*|[\\[]*|[\\]]*|[»]*|[«]*|[…]*|[,]*|[—]*|[;]*|[.]*|[:]*|[/]*|[!]*|[?]*|[+]*]+"))
-                    .flatMap(Arrays::stream).filter(w -> !"".equals(w) && !"-".equals(w))
-                    .collect(Collectors.groupingBy(Function.identity(), counting())).entrySet()
-                    .stream().sorted(Map.Entry.comparingByKey()).collect(Collectors
-                            .toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1,
-                                    LinkedHashMap::new));
+                    .flatMap(Arrays::stream)
+                    .filter(w -> !"".equals(w) && !"-".equals(w))
+                    .collect(Collectors.groupingBy(Function.identity(), counting()))
+                    .entrySet()
+                    .stream()
+                    .sorted(Map.Entry.comparingByKey())
+                    .collect(Collectors.
+                            toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
         } catch (IOException e) {
             throw new RuntimeException();
         }
